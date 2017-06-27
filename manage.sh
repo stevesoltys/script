@@ -34,6 +34,7 @@ aosp_forks=(
   platform_frameworks_base
   platform_frameworks_minikin
   platform_frameworks_native
+  platform_libcore
   platform_manifest
   platform_ndk
   platform_packages_apps_Camera2
