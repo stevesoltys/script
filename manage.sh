@@ -136,6 +136,7 @@ copperhead=(
   platform_external_offline-calendar
   platform_external_privacy-friendly-netmonitor
   platform_external_Silence
+  platform_packages_apps_Backup
   platform_packages_apps_F-Droid_privileged-extension
   platform_packages_apps_PdfViewer
   platform_packages_apps_Updater
