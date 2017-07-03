@@ -142,7 +142,9 @@ copperhead=(
   platform_packages_apps_Updater
   platform_packages_apps_LegacyUpdater
   script
-  vendor
+  vendor_google_devices
+  vendor_huawei
+  vendor_lge
 )
 
 for repo in ${copperhead[@]}; do
