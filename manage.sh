@@ -115,13 +115,7 @@ for kernel in ${!kernels[@]}; do
     git push origin $aosp_version.$build_number || exit 1
   else
     git fetch upstream --tags || exit 1
-
-    if [[ $kernel == google_marlin ]]; then
-      git pull --rebase upstream android-${kernels[$kernel]}-$kernel_suffix-pixel || exit 1
-    else
-      git pull --rebase upstream android-${kernels[$kernel]}-$kernel_suffix || exit 1
-    fi
-
+    git pull --rebase upstream android-${kernels[$kernel]}-$kernel_suffix || exit 1
     git push -f || exit 1
   fi
 
