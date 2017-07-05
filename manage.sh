@@ -9,8 +9,8 @@ fi
 
 kernel_suffix=nougat-mr2
 branch=nougat-mr2-release
-aosp_version=N2G47X
-aosp_tag=android-7.1.2_r13
+aosp_version=N2G48B
+aosp_tag=android-7.1.2_r19
 
 aosp_forks=(
   device_common
