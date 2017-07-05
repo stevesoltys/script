@@ -22,7 +22,6 @@ aosp_forks=(
   platform_bootable_recovery
   platform_build
   platform_development
-  platform_external_chromium-webview
   platform_external_clang
   platform_external_llvm
   platform_external_nanopb-c
