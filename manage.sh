@@ -33,6 +33,7 @@ aosp_forks=(
   platform_frameworks_base
   platform_frameworks_minikin
   platform_frameworks_native
+  platform_frameworks_opt_net_wifi
   platform_libcore
   platform_manifest
   platform_ndk
