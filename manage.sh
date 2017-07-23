@@ -37,6 +37,7 @@ aosp_forks=(
   platform_libcore
   platform_manifest
   platform_ndk
+  platform_packages_apps_Bluetooth
   platform_packages_apps_Camera2
   platform_packages_apps_DeskClock
   platform_packages_apps_Launcher3
