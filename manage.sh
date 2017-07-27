@@ -65,7 +65,7 @@ kernels[huawei_angler]=msm-angler-3.10
 kernels[lge_bullhead]=msm-bullhead-3.10
 kernels[google_marlin]=msm-marlin-3.18
 
-#DELETE_TAG=N2G47X.2017.06.06.00.02.24
+#DELETE_TAG=
 
 for repo in "${aosp_forks[@]}"; do
   echo -e "\n>>> $(tput setaf 3)Handling $repo$(tput sgr0)"
