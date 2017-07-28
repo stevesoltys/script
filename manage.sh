@@ -42,6 +42,7 @@ aosp_forks=(
   platform_ndk
   platform_packages_apps_Bluetooth
   platform_packages_apps_Camera2
+  platform_packages_apps_ContactsCommon
   platform_packages_apps_DeskClock
   platform_packages_apps_Gallery2
   platform_packages_apps_Launcher3
