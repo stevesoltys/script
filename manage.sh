@@ -133,6 +133,7 @@ for kernel in ${!kernels[@]}; do
 done
 
 copperhead=(
+  chromium_patches
   platform_external_chromium
   platform_external_Etar-Calendar
   platform_external_F-Droid
