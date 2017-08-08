@@ -1,5 +1,9 @@
 #!/bin/bash
 
+set -o nounset
+
+DELETE_TAG=
+
 build_number=
 if [[ $# -eq 1 ]]; then
   build_number=$1
@@ -62,12 +66,30 @@ aosp_forks=(
   platform_system_sepolicy
 )
 
-declare -A kernels
-kernels[huawei_angler]=msm-angler-3.10
-kernels[lge_bullhead]=msm-bullhead-3.10
-kernels[google_marlin]=msm-marlin-3.18
+declare -A kernels=(
+  [huawei_angler]=msm-angler-3.10
+  [lge_bullhead]=msm-bullhead-3.10
+  [google_marlin]=msm-marlin-3.18
+)
 
-#DELETE_TAG=
+copperhead=(
+  chromium_patches
+  platform_external_chromium
+  platform_external_Etar-Calendar
+  platform_external_F-Droid
+  platform_external_offline-calendar
+  platform_external_privacy-friendly-netmonitor
+  platform_external_Silence
+  platform_packages_apps_Backup
+  platform_packages_apps_F-Droid_privileged-extension
+  platform_packages_apps_PdfViewer
+  platform_packages_apps_Updater
+  platform_packages_apps_LegacyUpdater
+  script
+  vendor_google_devices
+  vendor_huawei
+  vendor_lge
+)
 
 for repo in "${aosp_forks[@]}"; do
   echo -e "\n>>> $(tput setaf 3)Handling $repo$(tput sgr0)"
@@ -135,25 +157,6 @@ for kernel in ${!kernels[@]}; do
 
   cd .. || exit 1
 done
-
-copperhead=(
-  chromium_patches
-  platform_external_chromium
-  platform_external_Etar-Calendar
-  platform_external_F-Droid
-  platform_external_offline-calendar
-  platform_external_privacy-friendly-netmonitor
-  platform_external_Silence
-  platform_packages_apps_Backup
-  platform_packages_apps_F-Droid_privileged-extension
-  platform_packages_apps_PdfViewer
-  platform_packages_apps_Updater
-  platform_packages_apps_LegacyUpdater
-  script
-  vendor_google_devices
-  vendor_huawei
-  vendor_lge
-)
 
 for repo in ${copperhead[@]}; do
   echo -e "\n>>> $(tput setaf 3)Handling $repo$(tput sgr0)"
