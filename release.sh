@@ -20,8 +20,6 @@ get_radio_image() {
 if [[ $1 == bullhead ]]; then
   BOOTLOADER=$(get_radio_image bootloader lge/$1)
   RADIO=$(get_radio_image baseband lge/$1)
-elif [[ $1 == flounder ]]; then
-  BOOTLOADER=$(get_radio_image bootloader htc/$1)
 elif [[ $1 == angler ]]; then
   BOOTLOADER=$(get_radio_image bootloader huawei/$1)
   RADIO=$(get_radio_image baseband huawei/$1)
