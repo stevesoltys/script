@@ -74,6 +74,7 @@ declare -A kernels=(
 
 copperhead=(
   chromium_patches
+  copperhead
   platform_external_chromium
   platform_external_Etar-Calendar
   platform_external_F-Droid
