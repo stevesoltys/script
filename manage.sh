@@ -11,10 +11,10 @@ elif [[ $# -ne 0 ]]; then
   exit 1
 fi
 
-kernel_suffix=nougat-mr2
-branch=nougat-mr2-release
-aosp_version=N2G48C
-aosp_tag=android-7.1.2_r28
+kernel_suffix=oreo-r6
+branch=oreo-r6-release
+aosp_version=OPR6.170623.013
+aosp_tag=android-8.0.0_r4
 
 aosp_forks=(
   device_common
@@ -25,7 +25,6 @@ aosp_forks=(
   platform_bionic
   platform_bootable_recovery
   platform_build
-  platform_development
   platform_external_clang
   platform_external_conscrypt
   platform_external_llvm
@@ -34,20 +33,15 @@ aosp_forks=(
   platform_external_sqlite
   platform_external_v8
   platform_external_wpa_supplicant_8
-  platform_frameworks_av
   platform_frameworks_base
   platform_frameworks_ex
-  platform_frameworks_minikin
   platform_frameworks_native
   platform_frameworks_opt_net_wifi
-  platform_frameworks_support
   platform_libcore
   platform_manifest
-  platform_ndk
   platform_packages_apps_Bluetooth
   platform_packages_apps_Camera2
-  platform_packages_apps_ContactsCommon
-  platform_packages_apps_DeskClock
+  platform_packages_apps_Contacts
   platform_packages_apps_Gallery2
   platform_packages_apps_Launcher3
   platform_packages_apps_Music
@@ -148,11 +142,7 @@ for kernel in ${!kernels[@]}; do
     git push origin $aosp_version.$build_number || exit 1
   else
     git fetch upstream --tags || exit 1
-    if [[ $kernel == google_marlin ]]; then
-      git pull --rebase upstream android-${kernels[$kernel]}-$kernel_suffix-pixel || exit 1
-    else
-      git pull --rebase upstream android-${kernels[$kernel]}-$kernel_suffix || exit 1
-    fi
+    git pull --rebase upstream android-${kernels[$kernel]}-$kernel_suffix || exit 1
     git push -f || exit 1
   fi
 
