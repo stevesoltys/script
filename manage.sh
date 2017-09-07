@@ -34,8 +34,10 @@ aosp_forks=(
   platform_external_sqlite
   platform_external_v8
   platform_external_wpa_supplicant_8
+  platform_frameworks_av
   platform_frameworks_base
   platform_frameworks_ex
+  platform_frameworks_minikin
   platform_frameworks_native
   platform_frameworks_opt_net_wifi
   platform_libcore
@@ -72,6 +74,7 @@ copperhead=(
   chromium_patches
   copperhead
   platform_external_chromium
+  platform_external_chromium-webview
   platform_external_Etar-Calendar
   platform_external_F-Droid
   platform_external_offline-calendar
