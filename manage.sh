@@ -11,10 +11,10 @@ elif [[ $# -ne 0 ]]; then
   exit 1
 fi
 
-kernel_suffix=oreo-r6
-branch=oreo-r6-release
-aosp_version=OPR6.170623.013
-aosp_tag=android-8.0.0_r4
+kernel_suffix=oreo-r3
+branch=oreo-r3-release
+aosp_version=OPR3.170623.007
+aosp_tag=android-8.0.0_r9
 
 aosp_forks=(
   device_common
@@ -66,8 +66,6 @@ aosp_forks=(
 )
 
 declare -A kernels=(
-  [huawei_angler]=msm-angler-3.10
-  [lge_bullhead]=msm-bullhead-3.10
   [google_marlin]=msm-marlin-3.18
 )
 
