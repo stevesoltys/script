@@ -67,6 +67,8 @@ aosp_forks=(
 
 declare -A kernels=(
   [google_marlin]=msm-marlin-3.18
+  [huawei_angler]=msm-angler-3.10
+  [lge_bullhead]=msm-bullhead-3.10
 )
 
 copperhead=(
