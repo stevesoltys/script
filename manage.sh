@@ -147,7 +147,13 @@ for kernel in ${!kernels[@]}; do
     git push origin $aosp_version.$build_number || exit 1
   else
     git fetch upstream --tags || exit 1
-    git pull --rebase upstream android-${kernels[$kernel]}-$kernel_suffix || exit 1
+    suffix=$kernel_suffix
+    if [[ $kernel == lge_bullhead ]]; then
+      suffix=oreo-r4
+    elif [[ $kernel == huawei_angler ]]; then
+      suffix=oreo-r6
+    fi
+    git pull --rebase upstream android-${kernels[$kernel]}-$suffix || exit 1
     git push -f || exit 1
   fi
 
