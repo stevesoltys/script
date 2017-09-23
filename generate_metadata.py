@@ -11,4 +11,5 @@ with ZipFile(parser.parse_args().zip) as f:
         data = dict(line[:-1].decode().split("=") for line in metadata)
         with open(data["pre-device"] + "-testing", "w") as output:
             build_id = data["post-build"].split("/")[3]
-            print(data["post-build-incremental"], data["post-timestamp"], build_id, file=output)
+            incremental = data["post-build"].split("/")[4].split(":")[0]
+            print(incremental, data["post-timestamp"], build_id, file=output)
