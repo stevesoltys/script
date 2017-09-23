@@ -85,7 +85,6 @@ copperhead=(
   platform_packages_apps_F-Droid_privileged-extension
   platform_packages_apps_PdfViewer
   platform_packages_apps_Updater
-  platform_packages_apps_LegacyUpdater
   script
   vendor_google_devices
   vendor_huawei
