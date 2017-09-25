@@ -89,6 +89,7 @@ copperhead=(
   vendor_google_devices
   vendor_huawei
   vendor_lge
+  vendor_linaro
 )
 
 for repo in "${aosp_forks[@]}"; do
