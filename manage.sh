@@ -74,6 +74,7 @@ declare -A kernels=(
 )
 
 copperhead=(
+  android-prepare-vendor
   chromium_patches
   copperhead
   platform_external_chromium
@@ -87,9 +88,6 @@ copperhead=(
   platform_packages_apps_PdfViewer
   platform_packages_apps_Updater
   script
-  vendor_google_devices
-  vendor_huawei
-  vendor_lge
   vendor_linaro
 )
 
