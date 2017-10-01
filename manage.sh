@@ -68,9 +68,10 @@ aosp_forks=(
 )
 
 declare -A kernels=(
-  [google_marlin]=msm-marlin-3.18
-  [huawei_angler]=msm-angler-3.10
-  [lge_bullhead]=msm-bullhead-3.10
+  [google_marlin]=android-msm-marlin-3.18
+  [huawei_angler]=android-msm-angler-3.10
+  [lge_bullhead]=android-msm-bullhead-3.10
+  [linaro_hikey]=hikey-4.9
 )
 
 copperhead=(
@@ -152,8 +153,10 @@ for kernel in ${!kernels[@]}; do
       suffix=oreo-r4
     elif [[ $kernel == huawei_angler ]]; then
       suffix=oreo-r6
+    elif [[ $kernel == linaro_hikey ]]; then
+      suffix=android-8.0.0_r4
     fi
-    git pull --rebase upstream android-${kernels[$kernel]}-$suffix || exit 1
+    git pull --rebase upstream ${kernels[$kernel]}-$suffix || exit 1
     git push -f || exit 1
   fi
 
