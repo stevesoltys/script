@@ -151,7 +151,7 @@ for kernel in ${!kernels[@]}; do
     if [[ $kernel == lge_bullhead ]]; then
       suffix=oreo-r4
     elif [[ $kernel == huawei_angler ]]; then
-      suffix=oreo-r6
+      suffix=oreo-r5
     elif [[ $kernel == linaro_hikey ]]; then
       suffix=android-8.0.0_r4
     fi
