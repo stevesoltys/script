@@ -20,12 +20,17 @@ get_radio_image() {
 if [[ $1 == bullhead ]]; then
   BOOTLOADER=$(get_radio_image bootloader lge/$1)
   RADIO=$(get_radio_image baseband lge/$1)
+  PREFIX=aosp_
 elif [[ $1 == angler ]]; then
   BOOTLOADER=$(get_radio_image bootloader huawei/$1)
   RADIO=$(get_radio_image baseband huawei/$1)
+  PREFIX=aosp_
 elif [[ $1 == marlin || $1 == sailfish ]]; then
   BOOTLOADER=$(get_radio_image bootloader google_devices/$1)
   RADIO=$(get_radio_image baseband google_devices/$1)
+  PREFIX=aosp_
+elif [[ $1 == hikey || $1 == hikey960 ]]; then
+  :
 else
   user_error
 fi
@@ -39,16 +44,20 @@ mkdir -p $OUT || exit 1
 
 TARGET_FILES=$DEVICE-target_files-$BUILD.zip
 
+if [[ $DEVICE != hikey*  ]]; then
+  VERITY_SWITCHES=(--replace_verity_public_key "$KEY_DIR/verity_key.pub" --replace_verity_private_key "$KEY_DIR/verity"
+                   --replace_verity_keyid "$KEY_DIR/verity.x509.pem")
+fi
+
 if [[ $DEVICE == bullhead ]]; then
   EXTRA_OTA=(-b device/lge/bullhead/update-binary)
 fi
 
-build/tools/releasetools/sign_target_files_apks -o -d "$KEY_DIR" \
-  --replace_verity_public_key "$KEY_DIR/verity_key.pub" --replace_verity_private_key "$KEY_DIR/verity" \
-  --replace_verity_keyid "$KEY_DIR/verity.x509.pem" \
-  out/target/product/$DEVICE/obj/PACKAGING/target_files_intermediates/aosp_$DEVICE-target_files-$BUILD_NUMBER.zip \
+build/tools/releasetools/sign_target_files_apks -o -d "$KEY_DIR" "${VERITY_SWITCHES[@]}" \
+  out/target/product/$DEVICE/obj/PACKAGING/target_files_intermediates/$PREFIX$DEVICE-target_files-$BUILD_NUMBER.zip \
   $OUT/$TARGET_FILES || exit 1
 
-build/tools/releasetools/ota_from_target_files --block -k "$KEY_DIR/releasekey" "${EXTRA_OTA[@]}" $OUT/$TARGET_FILES \
-  $OUT/$DEVICE-ota_update-$BUILD.zip || exit 1
-
+if [[ $DEVICE != hikey* ]]; then
+  build/tools/releasetools/ota_from_target_files --block -k "$KEY_DIR/releasekey" "${EXTRA_OTA[@]}" $OUT/$TARGET_FILES \
+    $OUT/$DEVICE-ota_update-$BUILD.zip || exit 1
+fi
