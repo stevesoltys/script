@@ -11,20 +11,22 @@ elif [[ $# -ne 0 ]]; then
   exit 1
 fi
 
-kernel_suffix=oreo-r6
-branch=oreo-r6-release
-aosp_version=OPR6.170623.013
-aosp_tag=android-8.0.0_r4
+kernel_suffix=oreo-r3
+branch=oreo-r3-release
+aosp_version=OPR3.170623.008
+aosp_tag=android-8.0.0_r15
 
 aosp_forks=(
   device_common
   device_google_marlin
   device_huawei_angler
   device_lge_bullhead
+  device_linaro_hikey
   platform_art
   platform_bionic
   platform_bootable_recovery
   platform_build
+  platform_build_kati
   platform_build_soong
   platform_external_clang
   platform_external_conscrypt
@@ -45,6 +47,7 @@ aosp_forks=(
   platform_packages_apps_Bluetooth
   platform_packages_apps_Camera2
   platform_packages_apps_Contacts
+  platform_packages_apps_DeskClock
   platform_packages_apps_ExactCalculator
   platform_packages_apps_Gallery2
   platform_packages_apps_Launcher3
@@ -65,16 +68,17 @@ aosp_forks=(
 )
 
 declare -A kernels=(
-  [huawei_angler]=msm-angler-3.10
-  [lge_bullhead]=msm-bullhead-3.10
-  [google_marlin]=msm-marlin-3.18
+  [google_marlin]=android-msm-marlin-3.18
+  [huawei_angler]=android-msm-angler-3.10
+  [lge_bullhead]=android-msm-bullhead-3.10
+  [linaro_hikey]=hikey-4.9
 )
 
 copperhead=(
+  android-prepare-vendor
   chromium_patches
   copperhead
   platform_external_chromium
-  platform_external_chromium-webview
   platform_external_Etar-Calendar
   platform_external_F-Droid
   platform_external_offline-calendar
@@ -84,11 +88,8 @@ copperhead=(
   platform_packages_apps_F-Droid_privileged-extension
   platform_packages_apps_PdfViewer
   platform_packages_apps_Updater
-  platform_packages_apps_LegacyUpdater
   script
-  vendor_google_devices
-  vendor_huawei
-  vendor_lge
+  vendor_linaro
 )
 
 for repo in "${aosp_forks[@]}"; do
@@ -147,7 +148,15 @@ for kernel in ${!kernels[@]}; do
     git push origin $aosp_version.$build_number || exit 1
   else
     git fetch upstream --tags || exit 1
-    git pull --rebase upstream android-${kernels[$kernel]}-$kernel_suffix || exit 1
+    suffix=$kernel_suffix
+    if [[ $kernel == lge_bullhead ]]; then
+      suffix=oreo-r4
+    elif [[ $kernel == huawei_angler ]]; then
+      suffix=oreo-r5
+    elif [[ $kernel == linaro_hikey ]]; then
+      suffix=android-8.0.0_r4
+    fi
+    git pull --rebase upstream ${kernels[$kernel]}-$suffix || exit 1
     git push -f || exit 1
   fi
 
