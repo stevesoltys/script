@@ -6,3 +6,6 @@ export BUILD_NUMBER=$(cat out/build_number.txt 2>/dev/null || date --utc +%Y.%m.
 echo "BUILD_NUMBER=$BUILD_NUMBER"
 export DISPLAY_BUILD_NUMBER=true
 chrt -b -p 0 $$
+mkdir out/bin
+ln -s /usr/bin/python2 out/bin/python
+export PATH="$PWD/out/bin:$PATH"
